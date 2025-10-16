@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Stitch Design - Sajjad Moayyad</title>
+  
+  <link rel="icon" href="https://i.imghippo.com/files/EA1921aE.png">
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #221112;
+      overflow-x: hidden;
+    }
+    .profile-header {
+      background: linear-gradient(180deg, rgba(51, 26, 27, 0.85) 0%, rgba(34, 17, 18, 0.85) 100%);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .avatar-ring { box-shadow: 0 0 0 4px rgba(200, 146, 149, 0.2); }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in-up {
+      animation: fadeInUp 0.5s ease-out forwards;
+      opacity: 0;
+    }
+    .wave-container { display: flex; justify-content: center; align-items: center; height: 80px; gap: 6px; }
+    .wave-bar { width: 8px; height: 100%; border-radius: 4px; background-color: #c89295; animation: wave-animation 1.2s infinite ease-in-out; }
+    @keyframes wave-animation {
+      0%, 100% { transform: scaleY(0.2); }
+      50% { transform: scaleY(1); }
+    }
+    .wave-bar:nth-child(1) { animation-delay: -0.5s; }
+    .wave-bar:nth-child(2) { animation-delay: -0.3s; }
+    .wave-bar:nth-child(3) { animation-delay: -0.1s; }
+    .wave-bar:nth-child(4) { animation-delay: -0.4s; }
+    .wave-bar:nth-child(5) { animation-delay: -0.2s; }
+    @keyframes electric-flicker {
+      0%, 100% { box-shadow: 0 0 3px #fff, 0 0 6px #c89295, 0 0 9px #c89295; }
+      50% { box-shadow: 0 0 4px #fff, 0 0 8px #ffadd4, 0 0 12px #ffadd4; }
+    }
+    .electric-border { animation: electric-flicker 2s infinite linear; }
+    #interactive-blob {
+        position: fixed;
+        left: 0; top: 0; width: 400px; height: 400px;
+        background: radial-gradient(circle at center, rgba(200, 146, 149, 0.2) 0%, rgba(200, 146, 149, 0) 70%);
+        border-radius: 50%;
+        filter: blur(100px);
+        z-index: 1;
+        pointer-events: none;
+    }
+    .content-wrapper { position: relative; z-index: 2; }
+    
+    #link-modal {
+        transition: opacity 0.3s ease;
+    }
+    #modal-content {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .qr-wrapper {
+      background: linear-gradient(135deg, #c89295 0%, #ffadd4 100%);
+      padding: 3px;
+      border-radius: 12px;
+      display: inline-block;
+    }
+
+    .qr-inner {
+      background: white;
+      padding: 12px;
+      border-radius: 9px;
+    }
+
+    .social-icon {
+      transition: all 0.3s ease;
+    }
+
+    .social-card:hover .social-icon {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body class="bg-[#221112]">
+
+  <div id="interactive-blob"></div>
+
+  <div class="content-wrapper relative flex min-h-screen w-full flex-col">
+    <div class="profile-header sticky top-0 z-20 border-b border-[#472426]/50">
+      <div class="flex items-center p-4 pb-3 justify-between">
+        <button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-[#472426] transition-colors"><i class="fas fa-arrow-left text-white text-lg"></i></button>
+        <h2 class="text-white text-lg font-bold">الملف الشخصي</h2>
+        <button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-[#472426] transition-colors"><i class="fas fa-sliders-h text-white text-lg"></i></button>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center px-4 pt-6 pb-4 fade-in-up">
+        <!-- Profile picture updated -->
+        <div class="avatar-ring rounded-full w-28 h-28 mb-4 bg-[#2a1415] flex items-center justify-center overflow-hidden">
+            <img src="https://i.imghippo.com/files/EA1921aE.png" alt="صورة الملف الشخصي" class="w-full h-full object-cover">
+        </div>
+        <div class="flex items-center gap-2 mb-1">
+            <h1 class="text-white text-2xl font-bold text-center">ســجاد مـؤيد | Sajjad Moayyad</h1>
+            <i class="fas fa-check-circle text-blue-500 text-xl"></i>
+        </div>
+        <p class="text-[#c89295] text-sm mb-1">@sajjad.moayyad</p>
+        <p class="text-[#c89295] text-xs mb-4">انضم في 2021</p>
+    </div>
+
+    <div class="px-4 py-3 fade-in-up" style="animation-delay: 100ms;"><div class="wave-container rounded-xl bg-[#2a1415] p-4 electric-border"><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div></div></div>
+    <div class="px-4 py-4 fade-in-up" style="animation-delay: 200ms;"><div class="bg-[#2a1415] rounded-xl p-4 electric-border"><h3 class="text-white text-lg font-bold mb-3">نبذة عني</h3><p class="text-[#c89295] text-sm leading-relaxed">شغوف بالتصوير والسفر. أبحث دائمًا عن مغامرات جديدة والتقاط اللحظات المميزة. 📸✈️</p></div></div>
+
+    <div class="px-4 pb-4 fade-in-up" style="animation-delay: 300ms;">
+      <h3 class="text-white text-lg font-bold mb-3">وسائل التواصل</h3>
+      
+      <div class="grid grid-cols-2 gap-3">
+        
+        <button class="social-card flex items-center bg-[#2a1415] rounded-xl p-4 electric-border cursor-pointer" data-link="https://www.instagram.com/x.hxw?igsh=MTQ2ZWs2cGNlMmZ5aQ==" data-title="Instagram" data-type="instagram">
+          <div class="flex items-center justify-center rounded-lg bg-[#472426] w-12 h-12 min-w-[48px]"><i class="fab fa-instagram social-icon text-white text-xl"></i></div>
+          <p class="text-white text-sm font-semibold mr-3">انستغرام</p>
+        </button>
+        
+        <button class="social-card flex items-center bg-[#2a1415] rounded-xl p-4 electric-border cursor-pointer" data-link="https://www.tiktok.com/@MS4wLjABAAAANi2laHd5BwrViRP9XV1BubQvktpYWLFaguONI4U57vpVcIB5onx1LHX4HHbhWMrL?_t=ZS-90b3MkRAFXj&_r=1" data-title="TikTok" data-type="tiktok">
+          <div class="flex items-center justify-center rounded-lg bg-[#472426] w-12 h-12 min-w-[48px]"><i class="fab fa-tiktok social-icon text-white text-xl"></i></div>
+          <p class="text-white text-sm font-semibold mr-3">تيك توك</p>
+        </button>
+
+        <button class="social-card flex items-center bg-[#2a1415] rounded-xl p-4 electric-border cursor-pointer" data-link="https://www.facebook.com/share/17Fy59QyHF/" data-title="Facebook" data-type="facebook">
+          <div class="flex items-center justify-center rounded-lg bg-[#472426] w-12 h-12 min-w-[48px]"><i class="fab fa-facebook social-icon text-white text-xl"></i></div>
+          <p class="text-white text-sm font-semibold mr-3">فيسبوك</p>
+        </button>
+
+        <button class="social-card flex items-center bg-[#2a1415] rounded-xl p-4 electric-border cursor-pointer" data-link="https://snapchat.com/t/fjDznUzq" data-title="Snapchat" data-type="snapchat">
+          <div class="flex items-center justify-center rounded-lg bg-[#472426] w-12 h-12 min-w-[48px]"><i class="fab fa-snapchat social-icon text-white text-xl"></i></div>
+          <p class="text-white text-sm font-semibold mr-3">سناب شات</p>
+        </button>
+
+        <button class="social-card flex items-center bg-[#2a1415] rounded-xl p-4 electric-border cursor-pointer" data-link="https://t.me/sadhdu" data-title="Telegram" data-type="telegram">
+          <div class="flex items-center justify-center rounded-lg bg-[#472426] w-12 h-12 min-w-[48px]"><i class="fab fa-telegram social-icon text-white text-xl"></i></div>
+          <p class="text-white text-sm font-semibold mr-3">تيليجرام</p>
+        </button>
+
+        <button class="social-card flex items-center bg-[#2a1415] rounded-xl p-4 electric-border cursor-pointer" data-link="https://wa.me/+9640000000000" data-title="WhatsApp" data-type="whatsapp">
+          <div class="flex items-center justify-center rounded-lg bg-[#472426] w-12 h-12 min-w-[48px]"><i class="fab fa-whatsapp social-icon text-white text-xl"></i></div>
+          <p class="text-white text-sm font-semibold mr-3">واتساب</p>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="link-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 opacity-0">
+    <div id="modal-content" class="bg-[#2a1415] border-2 border-[#663336] rounded-2xl p-6 w-full max-w-sm text-center opacity-0 scale-95">
+      <h3 id="modal-title" class="text-white text-2xl font-bold mb-4"></h3>
+      <div class="qr-wrapper mb-4">
+        <div class="qr-inner">
+          <img id="qr-code-img" src="" alt="QR Code" class="w-48 h-48 mx-auto">
+        </div>
+      </div>
+      <p class="text-[#c89295] text-xs mb-6">امسح الباركود لزيارة الحساب</p>
+      <a id="direct-link-btn" href="#" target="_blank" class="block w-full bg-gradient-to-r from-[#c89295] to-[#ffadd4] hover:from-[#d4a5a8] hover:to-[#ffb8dd] text-white font-bold py-3 px-4 rounded-lg transition-all duration-300">
+        التوجه إلى التطبيق
+      </a>
+      <button id="close-modal-btn" class="mt-4 text-[#c89295] hover:text-white transition-colors">
+        إغلاق
+      </button>
+    </div>
+  </div>
+
+
+  <script>
+    // --- Script for interactive blob background ---
+    const blob = document.getElementById("interactive-blob");
+    window.onpointermove = event => { 
+        const { clientX, clientY } = event;
+        blob.animate({
+            left: `${clientX - blob.offsetWidth / 2}px`,
+            top: `${clientY - blob.offsetHeight / 2}px`
+        }, { duration: 3000, fill: "forwards" });
+    }
+
+    // Deep link mapping for each platform
+    const deepLinks = {
+      instagram: (username) => `instagram://user?username=x.hxw`,
+      tiktok: (userId) => `tiktok://user/MS4wLjABAAAANi2laHd5BwrViRP9XV1BubQvktpYWLFaguONI4U57vpVcIB5onx1LHX4HHbhWMrL`,
+      facebook: (id) => `fb://profile/17Fy59QyHF`,
+      snapchat: (username) => `snapchat://add/fjDznUzq`,
+      telegram: (username) => `tg://resolve?domain=sadhdu`,
+      whatsapp: (phone) => `whatsapp://send?phone=9640000000000`
+    };
+
+    // --- Script for social link modal ---
+    const socialCards = document.querySelectorAll('.social-card');
+    const modal = document.getElementById('link-modal');
+    const modalContent = document.getElementById('modal-content');
+    const modalTitle = document.getElementById('modal-title');
+    const qrCodeImg = document.getElementById('qr-code-img');
+    const directLinkBtn = document.getElementById('direct-link-btn');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+
+    function getDeepLink(type, originalLink) {
+      if (deepLinks[type]) {
+        return deepLinks[type](originalLink);
+      }
+      return originalLink;
+    }
+
+    function showModal(title, link, type) {
+        modalTitle.textContent = title;
+        qrCodeImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(link)}`;
+        
+        const deepLink = getDeepLink(type, link);
+        directLinkBtn.href = deepLink;
+        directLinkBtn.onclick = (e) => {
+          e.preventDefault();
+          window.location.href = deepLink;
+          // Fallback to web URL if deep link fails
+          setTimeout(() => {
+            window.location.href = link;
+          }, 500);
+        };
+        
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+            modalContent.classList.remove('opacity-0', 'scale-95');
+        }, 10);
+    }
+
+    function hideModal() {
+        modal.classList.add('opacity-0');
+        modalContent.classList.add('opacity-0', 'scale-95');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300);
+    }
+
+    socialCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const link = card.dataset.link;
+            const title = card.dataset.title;
+            const type = card.dataset.type;
+            if (link) {
+                showModal(title, link, type);
+            }
+        });
+    });
+
+    closeModalBtn.addEventListener('click', hideModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            hideModal();
+        }
+    });
+
+  </script>
+
+</body>
+</html>
+
+
