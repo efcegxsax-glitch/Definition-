@@ -1,268 +1,1937 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  
-  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <title>Stitch Design - Sajjad Moayyad</title>
-  
-  <link rel="icon" href="https://i.imghippo.com/files/EA1921aE.png">
-  
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <style>
-    body {
-      font-family: 'Cairo', sans-serif;
-      background-color: #221112;
-      overflow-x: hidden;
-    }
-    .profile-header {
-      background: linear-gradient(180deg, rgba(51, 26, 27, 0.85) 0%, rgba(34, 17, 18, 0.85) 100%);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-    .avatar-ring { box-shadow: 0 0 0 4px rgba(200, 146, 149, 0.2); }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .fade-in-up {
-      animation: fadeInUp 0.5s ease-out forwards;
-      opacity: 0;
-    }
-    .wave-container { display: flex; justify-content: center; align-items: center; height: 80px; gap: 6px; }
-    .wave-bar { width: 8px; height: 100%; border-radius: 4px; background-color: #c89295; animation: wave-animation 1.2s infinite ease-in-out; }
-    @keyframes wave-animation {
-      0%, 100% { transform: scaleY(0.2); }
-      50% { transform: scaleY(1); }
-    }
-    .wave-bar:nth-child(1) { animation-delay: -0.5s; }
-    .wave-bar:nth-child(2) { animation-delay: -0.3s; }
-    .wave-bar:nth-child(3) { animation-delay: -0.1s; }
-    .wave-bar:nth-child(4) { animation-delay: -0.4s; }
-    .wave-bar:nth-child(5) { animation-delay: -0.2s; }
-    @keyframes electric-flicker {
-      0%, 100% { box-shadow: 0 0 3px #fff, 0 0 6px #c89295, 0 0 9px #c89295; }
-      50% { box-shadow: 0 0 4px #fff, 0 0 8px #ffadd4, 0 0 12px #ffadd4; }
-    }
-    .electric-border { animation: electric-flicker 2s infinite linear; }
-    #interactive-blob {
-        position: fixed;
-        left: 0; top: 0; width: 400px; height: 400px;
-        background: radial-gradient(circle at center, rgba(200, 146, 149, 0.2) 0%, rgba(200, 146, 149, 0) 70%);
-        border-radius: 50%;
-        filter: blur(100px);
-        z-index: 1;
-        pointer-events: none;
-    }
-    .content-wrapper { position: relative; z-index: 2; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام الكشف والتتبع المتقدم PRO - V6.0</title>
     
-    #link-modal {
-        transition: opacity 0.3s ease;
-    }
-    #modal-content {
-        transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    .qr-wrapper {
-      background: linear-gradient(135deg, #c89295 0%, #ffadd4 100%);
-      padding: 3px;
-      border-radius: 12px;
-      display: inline-block;
-    }
-
-    .qr-inner {
-      background: white;
-      padding: 12px;
-      border-radius: 9px;
-    }
-
-    .social-icon {
-      transition: all 0.3s ease;
-    }
-
-    .social-card:hover .social-icon {
-      transform: scale(1.1);
-    }
-  </style>
-</head>
-<body class="bg-[#221112]">
-
-  <div id="interactive-blob"></div>
-
-  <div class="content-wrapper relative flex min-h-screen w-full flex-col">
-    <div class="profile-header sticky top-0 z-20 border-b border-[#472426]/50">
-      <div class="flex items-center p-4 pb-3 justify-between">
-        <button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-[#472426] transition-colors"><i class="fas fa-arrow-left text-white text-lg"></i></button>
-        <h2 class="text-white text-lg font-bold">الملف الشخصي</h2>
-        <button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-[#472426] transition-colors"><i class="fas fa-sliders-h text-white text-lg"></i></button>
-      </div>
-    </div>
-
-    <div class="flex flex-col items-center px-4 pt-6 pb-4 fade-in-up">
-        <!-- Profile picture updated -->
-        <div class="avatar-ring rounded-full w-28 h-28 mb-4 bg-[#2a1415] flex items-center justify-center overflow-hidden">
-            <img src="https://i.imghippo.com/files/EA1921aE.png" alt="صورة الملف الشخصي" class="w-full h-full object-cover">
-        </div>
-        <div class="flex items-center gap-2 mb-1">
-            <h1 class="text-white text-2xl font-bold text-center">ســجاد مـؤيد | Sajjad Moayyad</h1>
-            <i class="fas fa-check-circle text-blue-500 text-xl"></i>
-        </div>
-        <p class="text-[#c89295] text-sm mb-1">@sajjad.moayyad</p>
-        <p class="text-[#c89295] text-xs mb-4">انضم في 2021</p>
-    </div>
-
-    <div class="px-4 py-3 fade-in-up" style="animation-delay: 100ms;"><div class="wave-container rounded-xl bg-[#2a1415] p-4 electric-border"><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div></div></div>
-    <div class="px-4 py-4 fade-in-up" style="animation-delay: 200ms;"><div class="bg-[#2a1415] rounded-xl p-4 electric-border"><h3 class="text-white text-lg font-bold mb-3">نبذة عني</h3><p class="text-[#c89295] text-sm leading-relaxed">شغوف بالتصوير والسفر. أبحث دائمًا عن مغامرات جديدة والتقاط اللحظات المميزة. 📸✈️</p></div></div>
-
-    <div class="px-4 pb-4 fade-in-up" style="animation-delay: 300ms;">
-      <h3 class="text-white text-lg font-bold mb-3">وسائل التواصل</h3>
-      
-      <div class="grid grid-cols-2 gap-3">
-        
-        <button class="social-card flex items-center bg-[#2a1415] rounded-xl p-4 electric-border cursor-pointer" data-link="https://www.instagram.com/x.hxw?igsh=MTQ2ZWs2cGNlMmZ5aQ==" data-title="Instagram" data-type="instagram">
-          <div class="flex items-center justify-center rounded-lg bg-[#472426] w-12 h-12 min-w-[48px]"><i class="fab fa-instagram social-icon text-white text-xl"></i></div>
-          <p class="text-white text-sm font-semibold mr-3">انستغرام</p>
-        </button>
-        
-        <button class="social-card flex items-center bg-[#2a1415] rounded-xl p-4 electric-border cursor-pointer" data-link="https://www.tiktok.com/@MS4wLjABAAAANi2laHd5BwrViRP9XV1BubQvktpYWLFaguONI4U57vpVcIB5onx1LHX4HHbhWMrL?_t=ZS-90b3MkRAFXj&_r=1" data-title="TikTok" data-type="tiktok">
-          <div class="flex items-center justify-center rounded-lg bg-[#472426] w-12 h-12 min-w-[48px]"><i class="fab fa-tiktok social-icon text-white text-xl"></i></div>
-          <p class="text-white text-sm font-semibold mr-3">تيك توك</p>
-        </button>
-
-        <button class="social-card flex items-center bg-[#2a1415] rounded-xl p-4 electric-border cursor-pointer" data-link="https://www.facebook.com/share/17Fy59QyHF/" data-title="Facebook" data-type="facebook">
-          <div class="flex items-center justify-center rounded-lg bg-[#472426] w-12 h-12 min-w-[48px]"><i class="fab fa-facebook social-icon text-white text-xl"></i></div>
-          <p class="text-white text-sm font-semibold mr-3">فيسبوك</p>
-        </button>
-
-        <button class="social-card flex items-center bg-[#2a1415] rounded-xl p-4 electric-border cursor-pointer" data-link="https://snapchat.com/t/fjDznUzq" data-title="Snapchat" data-type="snapchat">
-          <div class="flex items-center justify-center rounded-lg bg-[#472426] w-12 h-12 min-w-[48px]"><i class="fab fa-snapchat social-icon text-white text-xl"></i></div>
-          <p class="text-white text-sm font-semibold mr-3">سناب شات</p>
-        </button>
-
-        <button class="social-card flex items-center bg-[#2a1415] rounded-xl p-4 electric-border cursor-pointer" data-link="https://t.me/sadhdu" data-title="Telegram" data-type="telegram">
-          <div class="flex items-center justify-center rounded-lg bg-[#472426] w-12 h-12 min-w-[48px]"><i class="fab fa-telegram social-icon text-white text-xl"></i></div>
-          <p class="text-white text-sm font-semibold mr-3">تيليجرام</p>
-        </button>
-
-        <button class="social-card flex items-center bg-[#2a1415] rounded-xl p-4 electric-border cursor-pointer" data-link="https://wa.me/+9640000000000" data-title="WhatsApp" data-type="whatsapp">
-          <div class="flex items-center justify-center rounded-lg bg-[#472426] w-12 h-12 min-w-[48px]"><i class="fab fa-whatsapp social-icon text-white text-xl"></i></div>
-          <p class="text-white text-sm font-semibold mr-3">واتساب</p>
-        </button>
-
-      </div>
-    </div>
-  </div>
-
-  <div id="link-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 opacity-0">
-    <div id="modal-content" class="bg-[#2a1415] border-2 border-[#663336] rounded-2xl p-6 w-full max-w-sm text-center opacity-0 scale-95">
-      <h3 id="modal-title" class="text-white text-2xl font-bold mb-4"></h3>
-      <div class="qr-wrapper mb-4">
-        <div class="qr-inner">
-          <img id="qr-code-img" src="" alt="QR Code" class="w-48 h-48 mx-auto">
-        </div>
-      </div>
-      <p class="text-[#c89295] text-xs mb-6">امسح الباركود لزيارة الحساب</p>
-      <a id="direct-link-btn" href="#" target="_blank" class="block w-full bg-gradient-to-r from-[#c89295] to-[#ffadd4] hover:from-[#d4a5a8] hover:to-[#ffb8dd] text-white font-bold py-3 px-4 rounded-lg transition-all duration-300">
-        التوجه إلى التطبيق
-      </a>
-      <button id="close-modal-btn" class="mt-4 text-[#c89295] hover:text-white transition-colors">
-        إغلاق
-      </button>
-    </div>
-  </div>
-
-
-  <script>
-    // --- Script for interactive blob background ---
-    const blob = document.getElementById("interactive-blob");
-    window.onpointermove = event => { 
-        const { clientX, clientY } = event;
-        blob.animate({
-            left: `${clientX - blob.offsetWidth / 2}px`,
-            top: `${clientY - blob.offsetHeight / 2}px`
-        }, { duration: 3000, fill: "forwards" });
-    }
-
-    // Deep link mapping for each platform
-    const deepLinks = {
-      instagram: (username) => `instagram://user?username=x.hxw`,
-      tiktok: (userId) => `tiktok://user/MS4wLjABAAAANi2laHd5BwrViRP9XV1BubQvktpYWLFaguONI4U57vpVcIB5onx1LHX4HHbhWMrL`,
-      facebook: (id) => `fb://profile/17Fy59QyHF`,
-      snapchat: (username) => `snapchat://add/fjDznUzq`,
-      telegram: (username) => `tg://resolve?domain=sadhdu`,
-      whatsapp: (phone) => `whatsapp://send?phone=9640000000000`
-    };
-
-    // --- Script for social link modal ---
-    const socialCards = document.querySelectorAll('.social-card');
-    const modal = document.getElementById('link-modal');
-    const modalContent = document.getElementById('modal-content');
-    const modalTitle = document.getElementById('modal-title');
-    const qrCodeImg = document.getElementById('qr-code-img');
-    const directLinkBtn = document.getElementById('direct-link-btn');
-    const closeModalBtn = document.getElementById('close-modal-btn');
-
-    function getDeepLink(type, originalLink) {
-      if (deepLinks[type]) {
-        return deepLinks[type](originalLink);
-      }
-      return originalLink;
-    }
-
-    function showModal(title, link, type) {
-        modalTitle.textContent = title;
-        qrCodeImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(link)}`;
-        
-        const deepLink = getDeepLink(type, link);
-        directLinkBtn.href = deepLink;
-        directLinkBtn.onclick = (e) => {
-          e.preventDefault();
-          window.location.href = deepLink;
-          // Fallback to web URL if deep link fails
-          setTimeout(() => {
-            window.location.href = link;
-          }, 500);
-        };
-        
-        modal.classList.remove('hidden');
-        setTimeout(() => {
-            modal.classList.remove('opacity-0');
-            modalContent.classList.remove('opacity-0', 'scale-95');
-        }, 10);
-    }
-
-    function hideModal() {
-        modal.classList.add('opacity-0');
-        modalContent.classList.add('opacity-0', 'scale-95');
-        setTimeout(() => {
-            modal.classList.add('hidden');
-        }, 300);
-    }
-
-    socialCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const link = card.dataset.link;
-            const title = card.dataset.title;
-            const type = card.dataset.type;
-            if (link) {
-                showModal(title, link, type);
-            }
-        });
-    });
-
-    closeModalBtn.addEventListener('click', hideModal);
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            hideModal();
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-    });
 
-  </script>
+        :root {
+            --primary-color: #FF00FF;
+            --secondary-color: #00FFFF;
+            --accent-color: #39FF14;
+            --warning-color: #FFFF00;
+            --danger-color: #FF0000;
+            --success-color: #00FF00;
+            --bg-dark: #000;
+            --bg-panel: #0a0a0a;
+            --bg-card: #1a1a1a;
+            --pro-gold: #FFD700;
+            --pro-silver: #C0C0C0;
+        }
 
+        body {
+            font-family: 'Segoe UI', 'Consolas', 'Courier New', monospace; 
+            background: var(--bg-dark); 
+            min-height: 100vh;
+            padding: 0; 
+            color: var(--accent-color);
+            overflow-x: hidden;
+            background: radial-gradient(circle at 20% 30%, #0f0f23 0%, #000 70%);
+        }
+
+        .container {
+            max-width: 100%; 
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 450px;
+            gap: 25px;
+            animation: fadeIn 1s ease-out;
+            transition: grid-template-columns 0.5s ease;
+            min-height: calc(100vh - 80px); 
+        }
+        
+        .main-content.full-width {
+            grid-template-columns: 1fr;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-top: 20px;
+            animation: fadeInDown 0.8s ease-out;
+            position: relative;
+        }
+
+        .pro-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: linear-gradient(45deg, var(--pro-gold), var(--pro-silver));
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 0 15px var(--pro-gold);
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color), 0 0 30px rgba(255, 0, 255, 0.8);
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--primary-color), var(--pro-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 300% auto;
+            animation: textShine 3s linear infinite;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            color: var(--pro-gold);
+            text-shadow: 0 0 5px var(--pro-gold);
+            margin-bottom: 10px;
+        }
+
+        .pro-features {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .pro-feature {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid var(--pro-gold);
+            border-radius: 8px;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            color: var(--pro-gold);
+        }
+
+        .video-section {
+            background: var(--bg-panel);
+            border: 3px solid var(--pro-gold);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 65%, rgba(255, 215, 0, 0.15) 75%, rgba(0, 255, 255, 0.15) 85%, transparent 95%);
+            z-index: 1;
+            pointer-events: none;
+            animation: scanline 2s linear infinite;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            flex-grow: 1; 
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+
+        #webcam {
+            width: 100%;
+            height: 100%; 
+            object-fit: contain; 
+            display: block;
+            z-index: 5;
+            filter: contrast(1.1) brightness(1.2); 
+        }
+
+        #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+        }
+
+        .fps-counter {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            border-radius: 8px;
+            z-index: 15;
+            font-size: 16px;
+            font-weight: bold;
+            border: 1px solid var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .controls {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            z-index: 20;
+            position: relative;
+        }
+
+        button {
+            padding: 12px 18px;
+            font-size: 1rem;
+            border: 2px solid; 
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            background: var(--bg-panel);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.7s;
+        }
+        
+        button:hover::before {
+            left: 100%;
+        }
+        
+        .btn-success { border-color: var(--success-color); color: var(--success-color); }
+        .btn-danger { border-color: var(--danger-color); color: var(--danger-color); }
+        .btn-info { border-color: var(--secondary-color); color: var(--secondary-color); }
+        .btn-primary { border-color: var(--primary-color); color: var(--primary-color); }
+        .btn-toggle { border-color: var(--warning-color); color: var(--warning-color); }
+        .btn-aimbot { border-color: var(--accent-color); color: var(--accent-color); }
+        .btn-stabilize { border-color: #FF6600; color: #FF6600; }
+        .btn-advanced { border-color: #AA00FF; color: #AA00FF; }
+        .btn-pro { border-color: var(--pro-gold); color: var(--pro-gold); }
+
+        button:hover {
+            box-shadow: 0 0 20px currentColor;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .detection-options {
+            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            background: rgba(20, 20, 20, 0.8);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #333;
+        }
+
+        .detection-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .detection-option input {
+            width: 18px;
+            height: 18px;
+        }
+
+        .detection-option label {
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .system-status {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+            background: rgba(20, 20, 20, 0.8);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+        }
+
+        .status-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .status-online {
+            background-color: var(--success-color);
+            box-shadow: 0 0 10px var(--success-color);
+            animation: pulse-glow 2s infinite;
+        }
+
+        .status-offline {
+            background-color: var(--danger-color);
+            box-shadow: 0 0 10px var(--danger-color);
+        }
+
+        .status-processing {
+            background-color: var(--warning-color);
+            box-shadow: 0 0 10px var(--warning-color);
+            animation: pulse-glow 1s infinite;
+        }
+
+        .status-pro {
+            background-color: var(--pro-gold);
+            box-shadow: 0 0 10px var(--pro-gold);
+            animation: pulse-glow 1.5s infinite;
+        }
+
+        .settings-panel {
+            margin-top: 20px;
+            background: rgba(20, 20, 20, 0.8);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .settings-panel h3 {
+            margin-bottom: 15px;
+            color: var(--pro-gold);
+            text-align: center;
+            font-size: 1.3rem;
+        }
+
+        .settings-panel p {
+            margin: 8px 0;
+            font-size: 1rem;
+        }
+
+        .stats-panel {
+            background: var(--bg-panel);
+            border: 3px solid var(--pro-gold); 
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+            min-height: 100%;
+            color: var(--pro-gold);
+            font-family: 'Segoe UI', 'Consolas', 'Courier New', monospace;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stats-header {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 2px dashed var(--pro-gold);
+            padding-bottom: 15px;
+            text-shadow: 0 0 10px var(--pro-gold);
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-item {
+            background: var(--bg-card);
+            border: 1px solid var(--pro-gold);
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.7);
+            margin-bottom: 20px;
+            padding: 18px;
+            border-radius: 10px;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.9);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--secondary-color);
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            text-shadow: 0 0 5px var(--accent-color);
+        }
+
+        .detections-list {
+            max-height: 350px;
+            overflow-y: auto;
+            padding: 15px;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 12px;
+            border: 1px solid #333;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .detection-item {
+            border: 1px solid;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+            background: rgba(30, 30, 30, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .detection-item:hover {
+            transform: scale(1.02);
+        }
+
+        .detection-name {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+
+        .detection-details {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .confidence-bar {
+            height: 10px;
+            background: #333;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 0.3s ease;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 25px;
+            color: #999;
+            font-size: 1.1rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* تأثيرات الحركة */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes textShine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 255, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* تحسينات للشاشات الصغيرة */
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .stats-panel {
+                display: none;
+            }
+            .controls {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="pro-badge">PRO V6.0</div>
+            <h1>🎯 نظام التتبع والكشف الاحترافي</h1>
+            <p class="subtitle">نسخة PRO مع خوارزميات متقدمة للتتبع المستقر والسلس</p>
+            <div class="pro-features">
+                <div class="pro-feature">🔄 تتبع فائق الاستقرار</div>
+                <div class="pro-feature">🧠 ذكاء اصطناعي متقدم</div>
+                <div class="pro-feature">🎯 تثبيت حركي ديناميكي</div>
+                <div class="pro-feature">⚡ معالجة فائقة السرعة</div>
+            </div>
+        </header>
+
+        <div class="main-content" id="mainContent">
+            <div class="video-section">
+                <div class="video-container">
+                    <div class="fps-counter" id="fps">FPS: 0</div>
+                    <video id="webcam" autoplay playsinline></video>
+                    <canvas id="canvas"></canvas>
+                </div>
+
+                <div class="detection-options">
+                    <div class="detection-option">
+                        <input type="radio" id="detectAll" name="detectionType" value="all" checked>
+                        <label for="detectAll">🔍 جميع الكائنات</label>
+                    </div>
+                    <div class="detection-option">
+                        <input type="radio" id="detectPeople" name="detectionType" value="person">
+                        <label for="detectPeople">👥 البشر فقط</label>
+                    </div>
+                    <div class="detection-option">
+                        <input type="radio" id="detectFaces" name="detectionType" value="face">
+                        <label for="detectFaces">😊 الوجوه فقط</label>
+                    </div>
+                    <div class="detection-option">
+                        <input type="radio" id="detectBodyParts" name="detectionType" value="body_parts">
+                        <label for="detectBodyParts">🦵 أجزاء الجسم</label>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button class="btn-success" id="enableCameraBtn">🎥 تشغيل الكاميرا</button>
+                    <button class="btn-danger" id="stopCameraBtn" disabled>⏹️ إيقاف الكاميرا</button>
+                    <button class="btn-info" id="switchCameraBtn" disabled>🔄 تبديل الكاميرا</button>
+                    <button class="btn-pro" id="proTrackingBtn" disabled>🦾 التتبع PRO</button>
+                    <button class="btn-advanced" id="aiAnalysisBtn" disabled>🤖 تحليل متقدم</button>
+                    <button class="btn-stabilize" id="stabilizeBtn" disabled>🎯 تفعيل التثبيت</button>
+                    <button class="btn-aimbot" id="toggleAimbotLinesBtn" disabled>❌ إخفاء خطوط التتبع</button>
+                    <button class="btn-primary" id="enhancePerformanceBtn" disabled>🚀 تعزيز الأداء</button>
+                    <button class="btn-toggle" id="toggleStatsBtn">👁️ إخفاء الإحصائيات</button>
+                    <button class="btn-info" id="captureBtn" disabled>📸 التقاط صورة</button>
+                </div>
+                
+                <div class="system-status">
+                    <div class="status-indicator"><span>حالة النظام:</span><div class="status-dot status-offline" id="systemStatus"></div></div>
+                    <div class="status-indicator"><span>معالجة الذكاء الاصطناعي:</span><div class="status-dot status-offline" id="aiStatus"></div></div>
+                    <div class="status-indicator"><span>التتبع النشط:</span><div class="status-dot status-offline" id="trackingStatus"></div></div>
+                    <div class="status-indicator"><span>التثبيت النشط:</span><div class="status-dot status-offline" id="stabilizeStatus"></div></div>
+                    <div class="status-indicator"><span>الأداء المعزز:</span><div class="status-dot status-offline" id="performanceStatus"></div></div>
+                    <div class="status-indicator"><span>وضع PRO:</span><div class="status-dot status-offline" id="proStatus"></div></div>
+                </div>
+
+                <div class="settings-panel">
+                    <h3>⚙️ إعدادات النظام النشطة</h3>
+                    <p>نموذج الكشف: <span id="modelType">EfficientDet-Lite4 PRO + Face Detection</span></p>
+                    <p>نوع الكشف: <span id="detectionTypeText">جميع الكائنات</span></p>
+                    <p>التحليل المتقدم: <span id="advancedAnalysisStatus" style="color:#FFFF00;">غير نشط</span></p>
+                    <p>التثبيت النشط: <span id="stabilizeActiveStatus" style="color:#FFFF00;">غير نشط</span></p>
+                    <p>الأداء المعزز: <span id="performanceStatusText" style="color:#FFFF00;">غير نشط</span></p>
+                    <p>وضع PRO: <span id="proStatusText" style="color:#FFFF00;">غير نشط</span></p>
+                </div>
+            </div>
+
+            <div class="stats-panel" id="statsPanel"> 
+                <h2 class="stats-header">📊 لوحة بيانات النظام الاحترافية</h2>
+
+                <div class="stat-item">
+                    <div class="stat-label">الأشياء المكتشفة حالياً</div>
+                    <div class="stat-value" id="objectCount">0</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-label">معدل إطارات المعالجة (FPS)</div>
+                    <div class="stat-value" id="fpsValue">0</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-label">الكائنات المتتبعة</div>
+                    <div class="stat-value" id="trackedObjects">0</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-label">نمط الحركة المسجل</div>
+                    <div class="stat-value" id="movementPattern">غير معروف</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-label">مستوى الاستقرار</div>
+                    <div class="stat-value" id="stabilityLevel">0%</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-label">وقت المعالجة (مللي ثانية)</div>
+                    <div class="stat-value" id="processingTime">0</div>
+                </div>
+
+                <h3 style="margin-top: 25px; margin-bottom: 15px; text-align: center; color: var(--secondary-color);">🎯 سجل التتبع المتقدم (Live Feed)</h3>
+                <div class="detections-list" id="detectionsList">
+                    <div class="loading"><p>في انتظار تشغيل الكاميرا...</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { 
+            ObjectDetector, 
+            FaceDetector,
+            FilesetResolver 
+        } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest";
+
+        // المتغيرات العامة
+        let objectDetector;
+        let faceDetector;
+        const video = document.getElementById('webcam'); 
+        const canvas = document.getElementById('canvas'); 
+        const ctx = canvas.getContext('2d');
+        let isDetecting = false;
+        let currentStream = null;
+        let useFrontCamera = false;
+        let lastFrameTime = Date.now();
+        let frameCount = 0;
+        let fps = 0;
+        let videoLoadedListener = null;
+        
+        let advancedAnalysis = false; 
+        let showAimbotLines = true;
+        let stabilizationActive = false;
+        let performanceEnhanced = false;
+        let proTrackingActive = false; // وضع PRO الجديد
+        
+        // إعدادات الكشف
+        let detectionType = 'all'; // all, person, face, body_parts
+        
+        let trackedObjects = new Map(); 
+        let objectHistory = new Map(); 
+        let movementPatterns = {};
+        let stabilizedObjects = new Map();
+        
+        // خوارزمية Kalman Filter PRO للتتبع المستقر
+        class ProKalmanFilter {
+            constructor() {
+                this.Q = 0.05;  // ضجيج العملية (مخفض للسلاسة)
+                this.R = 0.08;  // ضجيج القياس (محسّن)
+                this.P = 1;     // خطأ التقدير
+                this.X = 0;     // القيمة المقدرة
+                this.K = 0;     // كالمان غين
+                this.velocity = 0; // سرعة التتبع
+                this.acceleration = 0; // تسارع التتبع
+                this.smoothFactor = 0.85; // عامل التنعيم الإضافي
+            }
+            
+            filter(measurement, dt = 1) {
+                // مرحلة التنبؤ مع مراعاة السرعة
+                this.X = this.X + this.velocity * dt;
+                this.P = this.P + this.Q;
+                
+                // مرحلة التحديث
+                this.K = this.P / (this.P + this.R);
+                const innovation = measurement - this.X;
+                this.X = this.X + this.K * innovation;
+                this.P = (1 - this.K) * this.P;
+                
+                // تحديث السرعة
+                this.velocity = this.smoothFactor * this.velocity + (1 - this.smoothFactor) * innovation / dt;
+                
+                // تطبيق تنعيم إضافي للنتيجة
+                this.X = this.smoothFactor * this.X + (1 - this.smoothFactor) * measurement;
+                
+                return this.X;
+            }
+            
+            reset() {
+                this.P = 1;
+                this.X = 0;
+                this.K = 0;
+                this.velocity = 0;
+                this.acceleration = 0;
+            }
+        }
+        
+        // خوارزمية مطابقة الكائنات PRO
+        class ProObjectMatcher {
+            constructor() {
+                this.maxDistance = 80; // أقصى مسافة للمطابقة (مخفضة للدقة)
+                this.minConfidence = 0.4; // أقل ثقة للمطابقة (مرفوعة للدقة)
+                this.sizeWeight = 0.4; // وزن الحجم في المطابقة
+                this.positionWeight = 0.5; // وزن الموضع في المطابقة
+                this.categoryWeight = 0.1; // وزن الفئة في المطابقة
+            }
+            
+            // حساب درجة المطابقة بين كائنين
+            calculateMatchScore(obj1, obj2) {
+                // المسافة بين المراكز
+                const dx = obj1.position.x - obj2.position.x;
+                const dy = obj1.position.y - obj2.position.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                // التشابه في الحجم
+                const sizeSimilarity = 1 - Math.abs(obj1.size.width - obj2.size.width) / Math.max(obj1.size.width, obj2.size.width);
+                
+                // التشابه في الفئة
+                const categoryMatch = obj1.category === obj2.category ? 1 : 0;
+                
+                // حساب الدرجة النهائية مع الأوزان
+                const distanceScore = Math.max(0, 1 - distance / this.maxDistance);
+                const finalScore = (distanceScore * this.positionWeight) + 
+                                  (sizeSimilarity * this.sizeWeight) + 
+                                  (categoryMatch * this.categoryWeight);
+                
+                return finalScore;
+            }
+            
+            // مطابقة الكائنات بين الإطارات
+            matchObjects(currentObjects, previousObjects) {
+                const matches = new Map();
+                const usedCurrent = new Set();
+                const usedPrevious = new Set();
+                
+                // إيجاد أفضل المطابقات
+                previousObjects.forEach((prevObj, prevId) => {
+                    let bestMatchId = null;
+                    let bestScore = 0;
+                    
+                    currentObjects.forEach((currObj, currId) => {
+                        if (usedCurrent.has(currId)) return;
+                        
+                        const score = this.calculateMatchScore(prevObj, currObj);
+                        if (score > bestScore && score >= this.minConfidence) {
+                            bestScore = score;
+                            bestMatchId = currId;
+                        }
+                    });
+                    
+                    if (bestMatchId) {
+                        matches.set(prevId, {
+                            currentId: bestMatchId,
+                            score: bestScore
+                        });
+                        usedCurrent.add(bestMatchId);
+                        usedPrevious.add(prevId);
+                    }
+                });
+                
+                return matches;
+            }
+        }
+
+        const colors = [
+            '#FF00FF', // ماجنتا (أساسي)
+            '#00FFFF', // سماوي
+            '#FFFF00', // أصفر
+            '#00FF00', // أخضر
+            '#FF0066', // وردي
+            '#00AAFF', // أزرق ساطع
+            '#FF6600', // برتقالي
+            '#39FF14', // أخضر هاكر
+            '#AA00FF', // بنفسجي
+            '#00FFAA', // تركواز
+            '#FFD700', // ذهبي PRO
+            '#C0C0C0'  // فضي PRO
+        ];
+
+        // إنشاء كائنات الخوارزميات PRO
+        const proObjectMatcher = new ProObjectMatcher();
+        const proKalmanFilters = new Map(); // مرشحات كالمان PRO لكل كائن
+
+        // تهيئة نماذج MediaPipe المتقدمة
+        async function initializeDetectors() {
+            try {
+                updateSystemStatus('systemStatus', 'processing');
+                
+                const vision = await FilesetResolver.forVisionTasks(
+                    "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm"
+                );
+
+                // استخدام نماذج محلية بديلة من CDN موثوق
+                // هذه النماذج متوافقة مع الإصدار الحالي من MediaPipe
+                const objectModelPath = 'https://storage.googleapis.com/mediapipe-assets/object_detector.tflite?generation=1679941036644449';
+                const faceModelPath = 'https://storage.googleapis.com/mediapipe-assets/face_detector.tflite?generation=1679940890656775';
+
+                // تهيئة كاشف الكائنات PRO
+                objectDetector = await ObjectDetector.createFromOptions(vision, {
+                    baseOptions: {
+                        modelAssetPath: objectModelPath,
+                        delegate: "GPU" 
+                    },
+                    scoreThreshold: performanceEnhanced ? 0.12 : 0.08, 
+                    maxResults: performanceEnhanced ? 50 : 40, 
+                    runningMode: 'VIDEO'
+                });
+
+                // تهيئة كاشف الوجوه PRO
+                faceDetector = await FaceDetector.createFromOptions(vision, {
+                    baseOptions: {
+                        modelAssetPath: faceModelPath,
+                        delegate: "GPU"
+                    },
+                    runningMode: 'VIDEO'
+                });
+
+                console.log('✅ تم تحميل النماذج الاحترافية بنجاح');
+                updateSystemStatus('systemStatus', 'online');
+                updateSystemStatus('aiStatus', 'online');
+                
+            } catch (error) {
+                console.error('❌ خطأ في تحميل النماذج:', error);
+                
+                // حل بديل: استخدام نماذج أبسط إذا فشل تحميل النماذج المتقدمة
+                try {
+                    console.log('🔄 محاولة تحميل نماذج بديلة...');
+                    
+                    const vision = await FilesetResolver.forVisionTasks(
+                        "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm"
+                    );
+
+                    // استخدام النماذج الأساسية المتوفرة دائماً
+                    objectDetector = await ObjectDetector.createFromOptions(vision, {
+                        baseOptions: {
+                            modelAssetPath: 'https://storage.googleapis.com/mediapipe-tasks/object_detector/efficientdet_lite0_uint8.tflite',
+                            delegate: "GPU" 
+                        },
+                        scoreThreshold: 0.3,
+                        maxResults: 50,
+                        runningMode: 'VIDEO'
+                    });
+
+                    faceDetector = await FaceDetector.createFromOptions(vision, {
+                        baseOptions: {
+                            modelAssetPath: 'https://storage.googleapis.com/mediapipe-tasks/face_detector/blaze_face_short_range_uint8.tflite',
+                            delegate: "GPU"
+                        },
+                        runningMode: 'VIDEO'
+                    });
+
+                    console.log('✅ تم تحميل النماذج البديلة بنجاح');
+                    updateSystemStatus('systemStatus', 'online');
+                    updateSystemStatus('aiStatus', 'online');
+                    
+                } catch (fallbackError) {
+                    console.error('❌ فشل تحميل النماذج البديلة أيضاً:', fallbackError);
+                    updateSystemStatus('systemStatus', 'offline');
+                    updateSystemStatus('aiStatus', 'offline');
+                    
+                    // عرض رسالة توضيحية للمستخدم
+                    alert('تعذر تحميل نماذج الذكاء الاصطناعي. يرجى:\n\n1. التحقق من اتصال الإنترنت\n2. تحديث الصفحة والمحاولة مرة أخرى\n3. استخدام متصفح حديث يدعم WebAssembly');
+                }
+            }
+        }
+        
+        // تحديث نوع الكشف بناءً على اختيار المستخدم
+        function updateDetectionType() {
+            const selectedOption = document.querySelector('input[name="detectionType"]:checked');
+            detectionType = selectedOption.value;
+            
+            const detectionTypeText = document.getElementById('detectionTypeText');
+            switch(detectionType) {
+                case 'all':
+                    detectionTypeText.textContent = 'جميع الكائنات';
+                    break;
+                case 'person':
+                    detectionTypeText.textContent = 'البشر فقط';
+                    break;
+                case 'face':
+                    detectionTypeText.textContent = 'الوجوه فقط';
+                    break;
+                case 'body_parts':
+                    detectionTypeText.textContent = 'أجزاء الجسم';
+                    break;
+            }
+            
+            // إعادة تعيين التتبع عند تغيير نوع الكشف
+            if (isDetecting) {
+                trackedObjects.clear();
+                objectHistory.clear();
+                movementPatterns = {};
+                stabilizedObjects.clear();
+                proKalmanFilters.clear();
+            }
+        }
+        
+        // دالة تفعيل/تعطيل وضع PRO
+        function toggleProTracking() {
+            proTrackingActive = !proTrackingActive;
+            const btn = document.getElementById('proTrackingBtn');
+            const status = document.getElementById('proStatusText');
+            
+            if (proTrackingActive) {
+                btn.textContent = '🦾 إيقاف التتبع PRO';
+                btn.classList.remove('btn-pro');
+                btn.classList.add('btn-danger');
+                status.textContent = 'نشط';
+                status.style.color = '#FFD700';
+                updateSystemStatus('proStatus', 'pro');
+                
+                // تفعيل الميزات الاحترافية تلقائياً
+                if (!stabilizationActive) toggleStabilization();
+                if (!performanceEnhanced) togglePerformanceEnhancement();
+                
+                console.log('🦾 تم تفعيل وضع PRO مع خوارزميات متقدمة');
+            } else {
+                btn.textContent = '🦾 التتبع PRO';
+                btn.classList.remove('btn-danger');
+                btn.classList.add('btn-pro');
+                status.textContent = 'غير نشط';
+                status.style.color = '#FFFF00';
+                updateSystemStatus('proStatus', 'offline');
+            }
+        }
+        
+        // دالة تفعيل/تعطيل تعزيز الأداء
+        function togglePerformanceEnhancement() {
+            performanceEnhanced = !performanceEnhanced;
+            const btn = document.getElementById('enhancePerformanceBtn');
+            const status = document.getElementById('performanceStatusText');
+            const performanceStatus = document.getElementById('performanceStatus');
+            
+            if (performanceEnhanced) {
+                btn.textContent = '🚀 إيقاف تعزيز الأداء';
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-success');
+                status.textContent = 'نشط';
+                status.style.color = '#00FF00';
+                updateSystemStatus('performanceStatus', 'online');
+                
+                // إعادة تهيئة الكاشف والذاكرة
+                if ((objectDetector || faceDetector) && isDetecting) {
+                    setTimeout(() => {
+                        initializeDetectors().then(() => {
+                            console.log('🔄 تم تفعيل وضع الأداء العالي');
+                        });
+                    }, 100);
+                }
+            } else {
+                btn.textContent = '🚀 تعزيز الأداء';
+                btn.classList.remove('btn-success');
+                btn.classList.add('btn-primary');
+                status.textContent = 'غير نشط';
+                status.style.color = '#FFFF00';
+                updateSystemStatus('performanceStatus', 'offline');
+            }
+        }
+        
+        // دالة تفعيل/تعطيل التثبيت
+        function toggleStabilization() {
+            stabilizationActive = !stabilizationActive;
+            const btn = document.getElementById('stabilizeBtn');
+            const status = document.getElementById('stabilizeActiveStatus');
+            
+            if (stabilizationActive) {
+                btn.textContent = '🎯 إيقاف التثبيت';
+                btn.classList.remove('btn-stabilize');
+                btn.classList.add('btn-danger');
+                status.textContent = 'نشط';
+                status.style.color = '#00FF00';
+                updateSystemStatus('stabilizeStatus', 'online');
+            } else {
+                btn.textContent = '🎯 تفعيل التثبيت';
+                btn.classList.remove('btn-danger');
+                btn.classList.add('btn-stabilize');
+                status.textContent = 'غير نشط';
+                status.style.color = '#FFFF00';
+                updateSystemStatus('stabilizeStatus', 'offline');
+                stabilizedObjects.clear();
+                proKalmanFilters.clear();
+            }
+        }
+        
+        // دالة تبديل خطوط التتبع
+        function toggleAimbotLines() {
+            showAimbotLines = !showAimbotLines;
+            const btn = document.getElementById('toggleAimbotLinesBtn');
+            if (showAimbotLines) {
+                btn.textContent = '❌ إخفاء خطوط التتبع';
+                btn.classList.remove('btn-danger');
+                btn.classList.add('btn-aimbot');
+            } else {
+                btn.textContent = '✅ إظهار خطوط التتبع';
+                btn.classList.remove('btn-aimbot');
+                btn.classList.add('btn-danger');
+            }
+        }
+
+        function videoLoadedHandler() {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            isDetecting = true;
+            predictWebcam();
+            
+            // تفعيل جميع الأزرار بعد تحميل الكاميرا
+            document.getElementById('enableCameraBtn').disabled = true;
+            document.getElementById('stopCameraBtn').disabled = false;
+            document.getElementById('switchCameraBtn').disabled = false;
+            document.getElementById('captureBtn').disabled = false;
+            document.getElementById('aiAnalysisBtn').disabled = false;
+            document.getElementById('toggleAimbotLinesBtn').disabled = false;
+            document.getElementById('stabilizeBtn').disabled = false;
+            document.getElementById('enhancePerformanceBtn').disabled = false;
+            document.getElementById('proTrackingBtn').disabled = false;
+
+            updateSystemStatus('trackingStatus', 'online');
+        }
+
+        async function enableCamera() {
+            if (!objectDetector && !faceDetector) {
+                alert('جاري تحميل نماذج التتبع، يرجى الانتظار...');
+                return;
+            }
+            
+            if (videoLoadedListener) {
+                 video.removeEventListener('loadeddata', videoLoadedListener);
+            }
+
+            const constraints = {
+                video: {
+                    facingMode: useFrontCamera ? 'user' : 'environment',
+                    width: { ideal: 1920 },
+                    height: { ideal: 1080 },
+                    frameRate: { ideal: 60, max: 60 }
+                }
+            };
+
+            try {
+                if (currentStream) {
+                    currentStream.getTracks().forEach(track => track.stop());
+                }
+
+                currentStream = await navigator.mediaDevices.getUserMedia(constraints);
+                video.srcObject = currentStream;
+                
+                videoLoadedListener = videoLoadedHandler;
+                video.addEventListener('loadeddata', videoLoadedListener, { once: true }); 
+                
+                video.play();
+
+            } catch (error) {
+                console.error('❌ خطأ في الوصول للكاميرا:', error);
+                let errorMessage = 'لا يمكن الوصول للكاميرا. يرجى التأكد من الأذونات.';
+                if (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError') {
+                    errorMessage = 'تم رفض إذن الكاميرا. يرجى السماح به في إعدادات المتصفح.';
+                } else if (error.name === 'NotReadableError') {
+                     errorMessage = 'الكاميرا مستخدمة بالفعل من قبل تطبيق أو علامة تبويب أخرى.';
+                } else if (error.name === 'SecurityError' && location.protocol !== 'https:') {
+                    errorMessage = '⚠️ يجب تشغيل هذا التطبيق عبر اتصال آمن (HTTPS) أو خادم محلي.';
+                } else if (error.name === 'OverconstrainedError') {
+                    errorMessage = 'الكاميرا لا تدعم 60 إطار/ثانية. سيتم استخدام أعلى معدل متاح.';
+                    // محاولة مرة أخرى مع قيود أقل
+                    constraints.video.frameRate = { ideal: 30, max: 60 };
+                    setTimeout(enableCamera, 100);
+                    return;
+                }
+                alert(errorMessage);
+                
+                document.getElementById('enableCameraBtn').disabled = false;
+                document.getElementById('stopCameraBtn').disabled = true;
+                document.getElementById('switchCameraBtn').disabled = true;
+                document.getElementById('captureBtn').disabled = true;
+                document.getElementById('aiAnalysisBtn').disabled = true;
+                document.getElementById('toggleAimbotLinesBtn').disabled = true;
+                document.getElementById('stabilizeBtn').disabled = true;
+                document.getElementById('enhancePerformanceBtn').disabled = true;
+                document.getElementById('proTrackingBtn').disabled = true;
+
+                updateSystemStatus('trackingStatus', 'offline');
+            }
+        }
+
+        function stopCamera() {
+            isDetecting = false;
+            if (currentStream) {
+                currentStream.getTracks().forEach(track => track.stop());
+            }
+            video.srcObject = null;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            if (videoLoadedListener) {
+                 video.removeEventListener('loadeddata', videoLoadedListener);
+            }
+            
+            document.getElementById('enableCameraBtn').disabled = false;
+            document.getElementById('stopCameraBtn').disabled = true;
+            document.getElementById('switchCameraBtn').disabled = true;
+            document.getElementById('captureBtn').disabled = true;
+            document.getElementById('aiAnalysisBtn').disabled = true;
+            document.getElementById('toggleAimbotLinesBtn').disabled = true;
+            document.getElementById('stabilizeBtn').disabled = true;
+            document.getElementById('enhancePerformanceBtn').disabled = true;
+            document.getElementById('proTrackingBtn').disabled = true;
+
+            document.getElementById('detectionsList').innerHTML = '<div class="loading"><p>في انتظار تشغيل الكاميرا...</p></div>';
+            document.getElementById('objectCount').textContent = '0';
+            document.getElementById('fpsValue').textContent = '0';
+            document.getElementById('movementPattern').textContent = 'غير معروف';
+            document.getElementById('stabilityLevel').textContent = '0%';
+            document.getElementById('processingTime').textContent = '0';
+            
+            updateSystemStatus('trackingStatus', 'offline');
+            updateSystemStatus('stabilizeStatus', 'offline');
+            updateSystemStatus('performanceStatus', 'offline');
+            updateSystemStatus('proStatus', 'offline');
+            
+            trackedObjects.clear();
+            objectHistory.clear();
+            movementPatterns = {};
+            stabilizedObjects.clear();
+            proKalmanFilters.clear();
+        }
+
+        function switchCamera() {
+            stopCamera(); 
+            useFrontCamera = !useFrontCamera;
+            setTimeout(enableCamera, 500); 
+        }
+
+        function toggleAdvancedAnalysis() {
+            advancedAnalysis = !advancedAnalysis;
+            document.getElementById('advancedAnalysisStatus').textContent = advancedAnalysis ? 'نشط' : 'غير نشط';
+            document.getElementById('aiAnalysisBtn').textContent = advancedAnalysis ? '🤖 إيقاف التحليل المتقدم' : '🤖 تحليل متقدم';
+            
+            if (advancedAnalysis) {
+                document.getElementById('aiAnalysisBtn').classList.add('btn-primary');
+                document.getElementById('aiAnalysisBtn').classList.remove('btn-advanced');
+            } else {
+                document.getElementById('aiAnalysisBtn').classList.remove('btn-primary');
+                document.getElementById('aiAnalysisBtn').classList.add('btn-advanced');
+            }
+            
+            if (!advancedAnalysis) {
+                 trackedObjects.clear();
+                 objectHistory.clear();
+                 movementPatterns = {};
+                 document.getElementById('trackedObjects').textContent = '0';
+                 document.getElementById('movementPattern').textContent = 'غير معروف';
+            }
+        }
+
+        // دالة الكشف المتقدمة بناءً على النوع المحدد
+        async function performDetection() {
+            const detections = [];
+            const currentTime = performance.now();
+            
+            try {
+                // الكشف عن الوجوه إذا كان النوع "وجه" أو "كل"
+                if (detectionType === 'face' || detectionType === 'all') {
+                    if (faceDetector) {
+                        const faceResults = faceDetector.detectForVideo(video, currentTime);
+                        if (faceResults.detections) {
+                            faceResults.detections.forEach(face => {
+                                detections.push({
+                                    ...face,
+                                    categoryName: 'face',
+                                    displayName: 'وجه'
+                                });
+                            });
+                        }
+                    }
+                }
+                
+                // الكشف عن الكائنات إذا كان النوع ليس "وجه" فقط
+                if (detectionType !== 'face') {
+                    if (objectDetector) {
+                        const objectResults = objectDetector.detectForVideo(video, currentTime);
+                        if (objectResults.detections) {
+                            objectResults.detections.forEach(obj => {
+                                const category = obj.categories[0];
+                                
+                                // تصفية النتائج بناءً على نوع الكشف المطلوب
+                                if (detectionType === 'all' || 
+                                    (detectionType === 'person' && category.categoryName === 'person') ||
+                                    (detectionType === 'body_parts' && 
+                                     ['hand', 'foot', 'head', 'arm', 'leg'].includes(category.categoryName))) {
+                                    
+                                    detections.push({
+                                        ...obj,
+                                        categoryName: category.categoryName,
+                                        displayName: getArabicCategoryName(category.categoryName),
+                                        confidence: category.score
+                                    });
+                                }
+                            });
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('خطأ في عملية الكشف:', error);
+            }
+            
+            return detections;
+        }
+        
+        // ترجمة أسماء الفئات إلى العربية
+        function getArabicCategoryName(englishName) {
+            const categoryMap = {
+                'person': 'شخص',
+                'face': 'وجه',
+                'hand': 'يد',
+                'head': 'رأس',
+                'arm': 'ذراع',
+                'leg': 'ساق',
+                'foot': 'قدم',
+                'car': 'سيارة',
+                'cat': 'قطة',
+                'dog': 'كلب',
+                'bird': 'طائر',
+                'chair': 'كرسي',
+                'table': 'طاولة',
+                'phone': 'هاتف',
+                'book': 'كتاب'
+            };
+            
+            return categoryMap[englishName] || englishName;
+        }
+
+        // دالة مطابقة الكائنات المثبتة مع المكتشفة حديثاً باستخدام Kalman Filter PRO
+        function matchStabilizedObjects(detections) {
+            if (!stabilizationActive) return;
+            
+            const currentTime = Date.now();
+            const currentDetections = new Map();
+            
+            // تحويل الاكتشافات إلى خريطة
+            detections.forEach((detection, index) => {
+                const bbox = detection.boundingBox;
+                
+                const centerX = bbox.originX + bbox.width / 2;
+                const centerY = bbox.originY + bbox.height / 2;
+                
+                currentDetections.set(`${detection.categoryName}-${index}`, {
+                    category: detection.categoryName,
+                    displayName: detection.displayName,
+                    confidence: detection.confidence || (detection.categories && detection.categories[0] ? detection.categories[0].score : 0.5),
+                    position: { x: centerX, y: centerY },
+                    size: { width: bbox.width, height: bbox.height },
+                    timestamp: currentTime
+                });
+            });
+            
+            // مطابقة الكائنات باستخدام الخوارزمية الاحترافية
+            const matches = proObjectMatcher.matchObjects(currentDetections, stabilizedObjects);
+            
+            // تحديث الكائنات المثبتة
+            matches.forEach((match, stabilizedId) => {
+                const currentObj = currentDetections.get(match.currentId);
+                const stabilizedObj = stabilizedObjects.get(stabilizedId);
+                
+                // تهيئة مرشح كالمان PRO إذا لم يكن موجوداً
+                if (!proKalmanFilters.has(stabilizedId)) {
+                    proKalmanFilters.set(stabilizedId, {
+                        x: new ProKalmanFilter(),
+                        y: new ProKalmanFilter(),
+                        width: new ProKalmanFilter(),
+                        height: new ProKalmanFilter()
+                    });
+                }
+                
+                const filters = proKalmanFilters.get(stabilizedId);
+                const dt = (currentTime - stabilizedObj.lastSeen) / 1000 || 0.033; // الفارق الزمني بالثواني
+                
+                // تطبيق مرشح كالمان PRO على الموضع والحجم
+                stabilizedObj.position.x = filters.x.filter(currentObj.position.x, dt);
+                stabilizedObj.position.y = filters.y.filter(currentObj.position.y, dt);
+                stabilizedObj.size.width = filters.width.filter(currentObj.size.width, dt);
+                stabilizedObj.size.height = filters.height.filter(currentObj.size.height, dt);
+                
+                stabilizedObj.confidence = currentObj.confidence;
+                stabilizedObj.lastSeen = currentTime;
+                stabilizedObj.stability += 0.15; // زيادة أسرع في الاستقرار
+                stabilizedObj.stability = Math.min(stabilizedObj.stability, 1);
+                
+                // إزالة الكائن المطابق من الاكتشافات الحالية
+                currentDetections.delete(match.currentId);
+            });
+            
+            // إضافة كائنات جديدة غير مثبتة
+            currentDetections.forEach((obj, objectId) => {
+                stabilizedObjects.set(objectId, {
+                    id: objectId,
+                    category: obj.category,
+                    displayName: obj.displayName,
+                    confidence: obj.confidence,
+                    position: { x: obj.position.x, y: obj.position.y },
+                    size: { width: obj.size.width, height: obj.size.height },
+                    lastSeen: currentTime,
+                    stability: 0.2 // بداية أعلى للاستقرار
+                });
+            });
+            
+            // تنظيف الكائنات القديمة
+            const staleIds = [];
+            stabilizedObjects.forEach((obj, id) => {
+                if (currentTime - obj.lastSeen > 2000) { // 2 ثانية فقط (أسرع تنظيف)
+                    staleIds.push(id);
+                }
+            });
+            
+            staleIds.forEach(id => {
+                stabilizedObjects.delete(id);
+                proKalmanFilters.delete(id);
+            });
+            
+            // تحديث مستوى الاستقرار العام
+            updateStabilityLevel();
+        }
+        
+        // تحديث مستوى الاستقرار العام
+        function updateStabilityLevel() {
+            let totalStability = 0;
+            let count = stabilizedObjects.size;
+            
+            if (count === 0) {
+                document.getElementById('stabilityLevel').textContent = '0%';
+                return;
+            }
+            
+            stabilizedObjects.forEach(obj => {
+                totalStability += obj.stability;
+            });
+            
+            const avgStability = (totalStability / count) * 100;
+            document.getElementById('stabilityLevel').textContent = `${avgStability.toFixed(1)}%`;
+        }
+
+        async function predictWebcam() {
+            if (!isDetecting || video.paused || video.ended || video.readyState < 2) {
+                 requestAnimationFrame(predictWebcam);
+                 return;
+            }
+            
+            const startTime = performance.now();
+            let detections = [];
+
+            try {
+                detections = await performDetection();
+            } catch (error) {
+                console.error('خطأ في الكشف:', error);
+                requestAnimationFrame(predictWebcam);
+                return;
+            }
+
+            // حساب الـ FPS
+            frameCount++;
+            const currentTime = Date.now();
+            if (currentTime - lastFrameTime >= 1000) {
+                fps = frameCount;
+                frameCount = 0;
+                lastFrameTime = currentTime;
+                document.getElementById('fps').textContent = `FPS: ${fps}`;
+                document.getElementById('fpsValue').textContent = fps;
+            }
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (detections.length > 0) {
+                // تطبيق التثبيت إذا كان نشطاً
+                if (stabilizationActive) {
+                    matchStabilizedObjects(detections);
+                }
+                
+                if (advancedAnalysis) {
+                    analyzeObjects(detections);
+                }
+                
+                drawDetections(detections);
+                
+                if (document.getElementById('statsPanel').classList.contains('hidden') === false) { 
+                    updateDetectionsList(detections);
+                }
+                document.getElementById('objectCount').textContent = detections.length;
+                document.getElementById('trackedObjects').textContent = advancedAnalysis ? trackedObjects.size : 'N/A';
+            } else {
+                document.getElementById('objectCount').textContent = '0';
+                document.getElementById('trackedObjects').textContent = '0';
+                if(isDetecting) {
+                   document.getElementById('detectionsList').innerHTML = '<div class="loading"><p>لا توجد أشياء مكتشفة</p></div>';
+                }
+            }
+
+            // حساب وقت المعالجة
+            const processingTime = performance.now() - startTime;
+            document.getElementById('processingTime').textContent = processingTime.toFixed(2);
+
+            requestAnimationFrame(predictWebcam);
+        }
+
+        function analyzeObjects(detections) {
+            const currentTime = Date.now();
+            let currentDetectedIds = new Set();
+            
+            detections.forEach((detection, index) => {
+                const bbox = detection.boundingBox;
+                const confidence = detection.confidence;
+                
+                const centerX = bbox.originX + bbox.width / 2;
+                const centerY = bbox.originY + bbox.height / 2;
+                
+                const objectId = `${detection.categoryName}-${index}`; 
+                currentDetectedIds.add(objectId);
+                
+                if (!objectHistory.has(objectId)) {
+                    objectHistory.set(objectId, []);
+                }
+                
+                const history = objectHistory.get(objectId);
+                history.push({
+                    x: centerX,
+                    y: centerY,
+                    width: bbox.width,
+                    height: bbox.height,
+                    timestamp: currentTime
+                });
+                
+                // الحفاظ على تاريخ أقصر لتحليل أكثر استجابة
+                if (history.length > 15) {
+                    history.shift();
+                }
+                
+                if (history.length > 1) {
+                    const lastPoint = history[history.length - 2];
+                    const currentPoint = history[history.length - 1];
+                    const timeDiff = currentPoint.timestamp - lastPoint.timestamp;
+                    
+                    if (timeDiff > 0) {
+                        const dx = currentPoint.x - lastPoint.x;
+                        const dy = currentPoint.y - lastPoint.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        const speed = distance / timeDiff; 
+                        const direction = Math.atan2(dy, dx) * 180 / Math.PI;
+                        
+                        trackedObjects.set(objectId, {
+                            id: objectId,
+                            category: detection.categoryName,
+                            displayName: detection.displayName,
+                            confidence: confidence,
+                            position: { x: centerX, y: centerY },
+                            velocity: { dx, dy, speed },
+                            direction: direction,
+                            size: { width: bbox.width, height: bbox.height },
+                            lastSeen: currentTime
+                        });
+                        
+                        analyzeMovementPattern(objectId, dx, dy, speed);
+                    }
+                }
+            });
+            
+            cleanupOldObjects(currentTime, currentDetectedIds);
+        }
+        
+        function analyzeMovementPattern(objectId, dx, dy, speed) {
+            if (!movementPatterns[objectId]) {
+                movementPatterns[objectId] = { 
+                    totalMovement: 0, 
+                    directionChanges: 0, 
+                    lastDirection: null, 
+                    speedChanges: 0, 
+                    lastSpeed: null,
+                    movementHistory: []
+                };
+            }
+            
+            const pattern = movementPatterns[objectId];
+            pattern.totalMovement++;
+            
+            const currentDirection = Math.atan2(dy, dx);
+            if (pattern.lastDirection !== null) {
+                const directionDiff = Math.abs(currentDirection - pattern.lastDirection);
+                if (directionDiff > Math.PI / 6) { // عتبة أقل لتغيير الاتجاه
+                    pattern.directionChanges++;
+                }
+            }
+            pattern.lastDirection = currentDirection;
+            
+            if (pattern.lastSpeed !== null) {
+                const speedDiff = Math.abs(speed - pattern.lastSpeed);
+                if (speedDiff > 0.3) { // عتبة أقل لتغيير السرعة
+                    pattern.speedChanges++;
+                }
+            }
+            pattern.lastSpeed = speed;
+            
+            // حفظ تاريخ الحركة للتحليل المتقدم
+            pattern.movementHistory.push({dx, dy, speed, timestamp: Date.now()});
+            if (pattern.movementHistory.length > 30) { // تاريخ أقصر لتحليل أسرع
+                pattern.movementHistory.shift();
+            }
+            
+            updateOverallMovementPattern();
+        }
+        
+        function updateOverallMovementPattern() {
+            let totalObjects = Object.keys(movementPatterns).length;
+            if (totalObjects === 0) {
+                document.getElementById('movementPattern').textContent = 'غير معروف';
+                return;
+            }
+            
+            let totalDirectionChanges = 0;
+            let totalSpeedChanges = 0;
+            let predictabilityScore = 0;
+            
+            for (const objectId in movementPatterns) {
+                totalDirectionChanges += movementPatterns[objectId].directionChanges;
+                totalSpeedChanges += movementPatterns[objectId].speedChanges;
+                
+                // حساب درجة التوقع بناءً على انتظام الحركة
+                const pattern = movementPatterns[objectId];
+                if (pattern.movementHistory.length > 5) { // عتبة أقل
+                    const recentChanges = pattern.directionChanges / pattern.totalMovement;
+                    predictabilityScore += (1 - recentChanges) * 100;
+                }
+            }
+            
+            const avgDirectionChanges = totalDirectionChanges / totalObjects;
+            const avgSpeedChanges = totalSpeedChanges / totalObjects;
+            const avgPredictability = predictabilityScore / totalObjects;
+            
+            let patternText = 'غير معروف';
+            let color = '#00FFFF';
+
+            if (avgDirectionChanges > 12 && avgSpeedChanges > 12) { // عتبات أقل
+                patternText = '🚨 حركة مشبوهة وعنيفة!';
+                color = '#FF0000';
+            } else if (avgDirectionChanges > 5 && avgSpeedChanges > 5) {
+                patternText = '⚠️ حركة متغيرة (تحقيق)';
+                color = '#FFFF00';
+            } else if (avgDirectionChanges < 3 && avgSpeedChanges < 3 && avgPredictability > 75) {
+                patternText = '✅ حركة مستقرة / منتظمة';
+                color = '#00FF00';
+            } else if (avgPredictability > 65) {
+                patternText = '🔍 حركة قابلة للتوقع';
+                color = '#39FF14';
+            } else {
+                patternText = 'شبه منتظم';
+            }
+
+            document.getElementById('movementPattern').textContent = patternText;
+            document.getElementById('movementPattern').style.color = color;
+        }
+        
+        function cleanupOldObjects(currentTime, currentDetectedIds) {
+            const objectIds = Array.from(trackedObjects.keys());
+            
+            objectIds.forEach(objectId => {
+                const object = trackedObjects.get(objectId);
+                
+                if (!currentDetectedIds.has(objectId) && currentTime - object.lastSeen > 1500) { // تنظيف أسرع
+                    trackedObjects.delete(objectId);
+                    objectHistory.delete(objectId);
+                    delete movementPatterns[objectId];
+                }
+            });
+        }
+
+        // دالة الرسم المحدثة مع دعم PRO والتثبيت المتقدم
+        function drawDetections(detections) {
+            const videoCenterX = canvas.width / 2;
+            const videoBottomY = canvas.height; 
+
+            // رسم الكائنات المثبتة أولاً (إذا كان التثبيت نشطاً)
+            if (stabilizationActive && stabilizedObjects.size > 0) {
+                stabilizedObjects.forEach((stabilizedObj, objectId) => {
+                    const colorIndex = parseInt(objectId.split('-')[1]) || 0;
+                    const color = proTrackingActive ? 
+                                 (stabilizedObj.stability > 0.7 ? colors[10] : colors[11]) : // ألوان PRO
+                                 colors[colorIndex % colors.length];
+                    
+                    // رسم مربع الكائن المثبت
+                    const bboxX = stabilizedObj.position.x - stabilizedObj.size.width / 2;
+                    const bboxY = stabilizedObj.position.y - stabilizedObj.size.height / 2;
+                    
+                    // تحديد سماكة الحدود بناءً على مستوى الاستقرار
+                    const borderWidth = 3 + (stabilizedObj.stability * 5);
+                    
+                    // رسم مربع التثبيت مع تأثيرات بصرية محسنة
+                    ctx.strokeStyle = color;
+                    ctx.lineWidth = borderWidth;
+                    ctx.shadowColor = color;
+                    ctx.shadowBlur = 20 + (stabilizedObj.stability * 15);
+                    
+                    // إذا كان الاستقرار عالياً، نرسم مربعاً مزدوجاً
+                    if (stabilizedObj.stability > 0.7) {
+                        ctx.strokeRect(bboxX - 3, bboxY - 3, stabilizedObj.size.width + 6, stabilizedObj.size.height + 6);
+                    }
+                    
+                    ctx.strokeRect(bboxX, bboxY, stabilizedObj.size.width, stabilizedObj.size.height);
+                    ctx.shadowBlur = 0;
+                    
+                    // رسم خط التتبع المركزي للكائنات المثبتة
+                    if (showAimbotLines) {
+                        ctx.strokeStyle = color;
+                        ctx.lineWidth = 2 + stabilizedObj.stability * 2;
+                        ctx.shadowColor = color;
+                        ctx.shadowBlur = 15;
+
+                        ctx.beginPath();
+                        ctx.moveTo(videoCenterX, videoBottomY);
+                        ctx.lineTo(stabilizedObj.position.x, stabilizedObj.position.y);
+                        ctx.stroke();
+
+                        ctx.shadowBlur = 0;
+                    }
+                    
+                    // رسم شريط الاستقرار
+                    const stabilityBarWidth = stabilizedObj.size.width;
+                    const stabilityBarHeight = 8;
+                    const stabilityBarY = bboxY - 15;
+                    
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                    ctx.fillRect(bboxX, stabilityBarY, stabilityBarWidth, stabilityBarHeight);
+                    
+                    const stabilityFillWidth = stabilizedObj.stability * stabilityBarWidth;
+                    const stabilityColor = stabilizedObj.stability > 0.7 ? '#00FF00' : 
+                                          (stabilizedObj.stability > 0.4 ? '#FFFF00' : '#FF0000');
+                    ctx.fillStyle = stabilityColor;
+                    ctx.fillRect(bboxX, stabilityBarY, stabilityFillWidth, stabilityBarHeight);
+                    
+                    // رسم نص الاستقرار
+                    const proPrefix = proTrackingActive ? '🦾 ' : '';
+                    const label = `${proPrefix}${stabilizedObj.displayName} [${(stabilizedObj.confidence * 100).toFixed(1)}%] - ${(stabilizedObj.stability * 100).toFixed(0)}%`;
+                    ctx.font = `bold ${14 + stabilizedObj.stability * 6}px Consolas`;
+                    const textWidth = ctx.measureText(label).width;
+                    
+                    let textX = bboxX;
+                    let textY = stabilityBarY - 5;
+                    
+                    if (textY < 0) {
+                        textY = bboxY + 20;
+                    }
+
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                    ctx.fillRect(textX, textY - 18, textWidth + 10, 22);
+
+                    ctx.fillStyle = color;
+                    ctx.fillText(label, textX + 5, textY);
+                    
+                    // رسم مركز الكائن المثبت
+                    ctx.fillStyle = color;
+                    ctx.shadowColor = color;
+                    ctx.shadowBlur = 20 + (stabilizedObj.stability * 15);
+                    ctx.beginPath();
+                    ctx.arc(stabilizedObj.position.x, stabilizedObj.position.y, 6 + (stabilizedObj.stability * 6), 0, 2 * Math.PI);
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                    
+                    // رسم مسار الحركة للكائنات المثبتة
+                    if (advancedAnalysis) {
+                        const objectId = stabilizedObj.id;
+                        const history = objectHistory.get(objectId);
+                        
+                        if (history && history.length > 1) {
+                            // رسم المسار السابق
+                            ctx.strokeStyle = color;
+                            ctx.lineWidth = 2 + stabilizedObj.stability;
+                            ctx.setLineDash([4, 4]);
+                            ctx.beginPath();
+                            ctx.moveTo(history[0].x, history[0].y);
+                            
+                            for (let i = 1; i < history.length; i++) {
+                                ctx.lineTo(history[i].x, history[i].y);
+                            }
+                            ctx.stroke();
+                            ctx.setLineDash([]);
+                        }
+                    }
+                });
+            }
+            
+            // رسم الكائنات المكتشفة حديثاً (إذا لم يكن التثبيت نشطاً أو لإظهار المقارنة)
+            if (!stabilizationActive || performanceEnhanced) {
+                detections.forEach((detection, index) => {
+                    const bbox = detection.boundingBox;
+                    const color = colors[index % colors.length];
+                    const confidence = (detection.confidence * 100).toFixed(1);
+
+                    const centerX = bbox.originX + bbox.width / 2;
+                    const centerY = bbox.originY + bbox.height / 2;
+                    
+                    // رسم خط التتبع المركزي
+                    if (showAimbotLines) {
+                        ctx.strokeStyle = color;
+                        ctx.lineWidth = 3;
+                        ctx.shadowColor = color;
+                        ctx.shadowBlur = 15;
+
+                        ctx.beginPath();
+                        ctx.moveTo(videoCenterX, videoBottomY);
+                        ctx.lineTo(centerX, centerY);
+                        ctx.stroke();
+
+                        ctx.shadowBlur = 0;
+                    }
+
+                    // رسم المربع المحيط
+                    ctx.strokeStyle = color;
+                    ctx.lineWidth = 4;
+                    ctx.shadowColor = color;
+                    ctx.shadowBlur = 12;
+                    ctx.strokeRect(bbox.originX, bbox.originY, bbox.width, bbox.height);
+                    ctx.shadowBlur = 0;
+                    
+                    // رسم شريط الثقة
+                    const healthBarWidth = bbox.width;
+                    const healthBarHeight = 6;
+                    const healthBarY = bbox.originY - 18;
+                    
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                    ctx.fillRect(bbox.originX, healthBarY, healthBarWidth, healthBarHeight);
+                    
+                    const healthFillWidth = (confidence / 100) * healthBarWidth;
+                    ctx.fillStyle = confidence > 70 ? '#00FF00' : (confidence > 40 ? '#FFFF00' : '#FF0000');
+                    ctx.fillRect(bbox.originX, healthBarY, healthFillWidth, healthBarHeight);
+                    
+                    // رسم مركز الكشف
+                    ctx.fillStyle = color;
+                    ctx.shadowColor = color;
+                    ctx.shadowBlur = 20;
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY, 6, 0, 2 * Math.PI);
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+
+                    // رسم شريط المعلومات
+                    const label = `${detection.displayName} [${confidence}%]`;
+                    ctx.font = 'bold 16px Consolas';
+                    const textWidth = ctx.measureText(label).width;
+                    
+                    let textX = bbox.originX;
+                    let textY = healthBarY - 8;
+                    
+                    if (textY < 0) {
+                        textY = bbox.originY + 20;
+                    }
+
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                    ctx.fillRect(textX, textY - 18, textWidth + 10, 22);
+
+                    ctx.fillStyle = color;
+                    ctx.fillText(label, textX + 5, textY);
+                    
+                    // التحليل المتقدم: مسار الحركة والتوقع
+                    if (advancedAnalysis) {
+                        const objectId = `${detection.categoryName}-${index}`;
+                        const history = objectHistory.get(objectId);
+                        
+                        if (history && history.length > 1) {
+                            // رسم المسار السابق
+                            ctx.strokeStyle = color;
+                            ctx.lineWidth = 2;
+                            ctx.setLineDash([4, 4]);
+                            ctx.beginPath();
+                            ctx.moveTo(history[0].x, history[0].y);
+                            
+                            for (let i = 1; i < history.length; i++) {
+                                ctx.lineTo(history[i].x, history[i].y);
+                            }
+                            ctx.stroke();
+                            ctx.setLineDash([]);
+                            
+                            // رسم توقع المسار
+                            if (history.length >= 3) {
+                                const lastPoint = history[history.length - 1];
+                                const prevPoint = history[history.length - 2];
+                                
+                                const dx = lastPoint.x - prevPoint.x;
+                                const dy = lastPoint.y - prevPoint.y;
+                                
+                                ctx.strokeStyle = '#FFFF00';
+                                ctx.lineWidth = 2;
+                                ctx.setLineDash([2, 5]);
+                                ctx.beginPath();
+                                ctx.moveTo(lastPoint.x, lastPoint.y);
+                                ctx.lineTo(lastPoint.x + dx * 5, lastPoint.y + dy * 5);
+                                ctx.stroke();
+                                ctx.setLineDash([]);
+                            }
+                        }
+                    }
+                });
+            }
+        }
+        
+        function updateDetectionsList(detections) {
+            const listHTML = detections.map((detection, index) => {
+                const bbox = detection.boundingBox;
+                const color = colors[index % colors.length];
+                const confidence = (detection.confidence * 100).toFixed(1);
+                
+                let advancedInfo = '';
+                if (advancedAnalysis) {
+                    const objectId = `${detection.categoryName}-${index}`;
+                    const trackedObject = trackedObjects.get(objectId);
+                    
+                    if (trackedObject) {
+                        advancedInfo = `
+                            <div>🚀 السرعة: ${trackedObject.velocity.speed.toFixed(3)} بكسل/مللي ثانية</div>
+                            <div>🧭 الاتجاه: ${trackedObject.direction.toFixed(1)}°</div>
+                        `;
+                    }
+                }
+
+                // إضافة معلومات التثبيت إذا كان نشطاً
+                let stabilizationInfo = '';
+                if (stabilizationActive) {
+                    const objectId = `${detection.categoryName}-${index}`;
+                    const stabilizedObj = stabilizedObjects.get(objectId);
+                    if (stabilizedObj) {
+                        stabilizationInfo = `
+                            <div>🎯 الاستقرار: ${(stabilizedObj.stability * 100).toFixed(1)}%</div>
+                        `;
+                    }
+                }
+
+                return `
+                    <div class="detection-item" style="border-color: ${color}">
+                        <div class="detection-name" style="color: ${color}; text-shadow: 0 0 3px ${color}">
+                            ${proTrackingActive ? '🦾 ' : ''}${index + 1}. ${detection.displayName}
+                        </div>
+                        <div class="detection-details">
+                            <div>📍 الموقع: (${bbox.originX.toFixed(0)}, ${bbox.originY.toFixed(0)})</div>
+                            <div>📏 الحجم: ${bbox.width.toFixed(0)}×${bbox.height.toFixed(0)}</div>
+                            <div>🎯 الثقة: ${confidence}%</div>
+                            ${advancedInfo}
+                            ${stabilizationInfo}
+                        </div>
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" style="width: ${confidence}%; background: ${color}; box-shadow: 0 0 5px ${color}"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('detectionsList').innerHTML = listHTML;
+        }
+
+        function captureImage() {
+            const captureCanvas = document.createElement('canvas');
+            captureCanvas.width = canvas.width;
+            captureCanvas.height = canvas.height;
+            const captureCtx = captureCanvas.getContext('2d');
+            
+            captureCtx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            captureCtx.drawImage(canvas, 0, 0);
+            
+            captureCanvas.toBlob(blob => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `pro-tracking-${Date.now()}.png`;
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+        }
+        
+        function toggleStatsPanel() {
+            const statsPanel = document.getElementById('statsPanel');
+            const mainContent = document.getElementById('mainContent'); 
+            const toggleStatsBtn = document.getElementById('toggleStatsBtn');
+            
+            const statsVisible = !statsPanel.classList.contains('hidden');
+            
+            if (statsVisible) {
+                statsPanel.classList.add('hidden');
+                mainContent.classList.add('full-width');
+                toggleStatsBtn.textContent = '👁️ إظهار الإحصائيات';
+            } else {
+                statsPanel.classList.remove('hidden');
+                mainContent.classList.remove('full-width');
+                toggleStatsBtn.textContent = '👁️ إخفاء الإحصائيات';
+            }
+        }
+        
+        function updateSystemStatus(elementId, status) {
+            const element = document.getElementById(elementId);
+            element.className = 'status-dot';
+            
+            if (status === 'online') {
+                element.classList.add('status-online');
+            } else if (status === 'processing') {
+                element.classList.add('status-processing');
+            } else if (status === 'pro') {
+                element.classList.add('status-pro');
+            } else {
+                element.classList.add('status-offline');
+            }
+        }
+
+        // معالجات الأحداث
+        document.getElementById('enableCameraBtn').addEventListener('click', enableCamera);
+        document.getElementById('stopCameraBtn').addEventListener('click', stopCamera);
+        document.getElementById('switchCameraBtn').addEventListener('click', switchCamera);
+        document.getElementById('captureBtn').addEventListener('click', captureImage);
+        document.getElementById('toggleStatsBtn').addEventListener('click', toggleStatsPanel);
+        document.getElementById('aiAnalysisBtn').addEventListener('click', toggleAdvancedAnalysis);
+        document.getElementById('toggleAimbotLinesBtn').addEventListener('click', toggleAimbotLines);
+        document.getElementById('stabilizeBtn').addEventListener('click', toggleStabilization);
+        document.getElementById('enhancePerformanceBtn').addEventListener('click', togglePerformanceEnhancement);
+        document.getElementById('proTrackingBtn').addEventListener('click', toggleProTracking);
+
+        // إضافة معالجات لأزرار اختيار نوع الكشف
+        document.querySelectorAll('input[name="detectionType"]').forEach(radio => {
+            radio.addEventListener('change', updateDetectionType);
+        });
+
+        // تهيئة النظام عند التحميل
+        initializeDetectors();
+        
+        // تحديث حالة النظام الأولية
+        updateSystemStatus('systemStatus', 'offline');
+        updateSystemStatus('aiStatus', 'offline');
+        updateSystemStatus('trackingStatus', 'offline');
+        updateSystemStatus('stabilizeStatus', 'offline');
+        updateSystemStatus('performanceStatus', 'offline');
+        updateSystemStatus('proStatus', 'offline');
+    </script>
 </body>
-</html>
-
-
+  </html>
